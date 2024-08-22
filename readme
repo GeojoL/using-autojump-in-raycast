@@ -1,4 +1,4 @@
-You need to create script by Raycast
+You need to create script by Raycast, find that location using 'show in finder' by right click.
 Then you open the '.sh' files via nvim, texteditor, anything you like.
 Finally, you need to paste these code and save it. Raycast will automatically know you have created and changed a script. 
 Give it a shortcut and run it.
