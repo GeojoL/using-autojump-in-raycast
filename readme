@@ -1,0 +1,34 @@
+You need to create script by Raycast
+Then you open the '.sh' files via nvim, texteditor, whatever you like.
+Finally, you need to paste these code and save it. Raycast will automatically know you have created and changed a script. 
+Give it a shortcut and run it.
+
+
+
+``
+# 手动加载 autojump 初始化文件
+source /opt/homebrew/etc/profile.d/autojump.sh
+ 
+# 设置 PATH 环境变量
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+ 
+# 提示用户输入 autojump 简化路径
+TARGET_DIR=$(osascript -e 'Tell application "System Events" to display dialog "Enter folder name (autojump pat
+
+# 检查用户是否输入了目录名
+if [ -z "$TARGET_DIR" ]; then
+  osascript -e 'Tell application "System Events" to display dialog "No folder name entered." buttons {"OK"}'
+  exit 1
+fi
+
+# 使用 autojump 来查找简化路径
+DIR_PATH=$(/opt/homebrew/bin/autojump "$TARGET_DIR" 2>/dev/null)
+
+# 检查目录是否存在
+if [ -z "$DIR_PATH" ]; then
+  osascript -e 'Tell application "System Events" to display dialog "Directory not found." buttons {"OK"}'
+  exit 1
+fi
+# 使用 Finder 打开该目录
+open "$DIR_PATH"
+``
